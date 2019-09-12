@@ -6,6 +6,7 @@ const Name = props => {
   const [firstName, setFirstName] = useState("peter");
   const handleChange = e => {
     setFirstName(e.target.value);
+    
   };
 
   const handleFirstNameInput = e => {
@@ -19,6 +20,8 @@ const Name = props => {
 
   return (
     <div className="name-input">
+      <h3>Please Enter Your First Name here:</h3>
+      <div className="inputBox">
       <input
         name="firstName"
         type="text"
@@ -26,14 +29,26 @@ const Name = props => {
         onChange={handleChange}
       />
       <button onClick={handleFirstNameInput}>Enter</button>
+      </div>
       <div>
         {props.isFetching ? (
           <h2>LOADING.........</h2>
         ) : (
-          <div>
-            {props.name}
-            {props.gender}
-            {props.probability}
+          <div className="resultBox">
+            {props.isEnterName ? (
+              <div>
+                {props.name}
+                {props.gender}
+                {props.probability}
+              </div>
+            ) : (
+              <div className="resultBox">
+                <p>Example:</p>
+                <p>Name: {props.name}</p>
+                <p>Gender: {props.gender}</p>
+                <p>Probability: {props.probability}</p>
+              </div>
+            )}
           </div>
         )}
       </div>
