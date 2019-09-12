@@ -30,8 +30,7 @@ export const reducer = (state = initialState, action) => {
           error: ""
         };
         case FETCHING_GENDER_SUCCESS:
-            console.log(state);
-             console.log(action);
+           
         return {
           ...state,
             name: action.payload.name,

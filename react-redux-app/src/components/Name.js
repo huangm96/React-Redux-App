@@ -20,7 +20,7 @@ const Name = props => {
 
   return (
     <div className="name-input">
-      <h3>Please Enter Your First Name here:</h3>
+      <h3>Please Enter Your First Name Here:</h3>
       <div className="inputBox">
       <input
         name="firstName"
@@ -56,7 +56,7 @@ const Name = props => {
   );
 };
 const mapStateToProps = state => {
-  console.log(state);
+  
   return {
     name: state.name,
     isEnterName: state.isEnterName,
