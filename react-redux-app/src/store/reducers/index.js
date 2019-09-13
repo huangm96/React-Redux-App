@@ -5,7 +5,7 @@ import {
 } from "../actions";
 const initialState = {
     name: '',
-    isEnteredName: false,
+    
     isFetching: false,
     error: '',
     gender: '',
@@ -20,7 +20,7 @@ export const reducer = (state = initialState, action) => {
         return {
           ...state,
           name: action.payload,
-          isEnteredName: true
+          
         };
         case FETCHING_GENDER_START:
             
@@ -33,10 +33,11 @@ export const reducer = (state = initialState, action) => {
            
         return {
           ...state,
-            name: action.payload.name,
-            gender: action.payload.gender,
-          probability:action.payload.probability,
-          isFetching: false
+          name: action.payload.name,
+          gender: action.payload.gender,
+          probability: action.payload.probability,
+          isFetching: false,
+          
         };
       default:
         return state;
