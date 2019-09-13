@@ -3,14 +3,15 @@ import { connect } from "react-redux";
 import { addName, getGender } from "../store/actions";
 
 const Name = props => {
+  const [newName, setNewName] = useState("peter");
   const [firstName, setFirstName] = useState("peter");
   const handleChange = e => {
-    setFirstName(e.target.value);
-    
+    setNewName(e.target.value);
   };
 
   const handleFirstNameInput = e => {
     e.preventDefault();
+    setFirstName(newName);
     props.addName(firstName);
   };
 
@@ -21,34 +22,25 @@ const Name = props => {
   return (
     <div className="name-input">
       <h3>Please Enter Your First Name Here:</h3>
-      <div className="inputBox">
-      <input
-        name="firstName"
-        type="text"
-        value={firstName}
-        onChange={handleChange}
-      />
-      <button onClick={handleFirstNameInput}>Enter</button>
-      </div>
+
+      <form className="inputBox" onSubmit={handleFirstNameInput}>
+        <input
+          name="firstName"
+          type="text"
+          value={newName}
+          onChange={handleChange}
+        />
+        <button>Enter</button>
+      </form>
+
       <div>
         {props.isFetching ? (
           <h2>LOADING.........</h2>
         ) : (
           <div className="resultBox">
-            {props.isEnterName ? (
-              <div>
-                {props.name}
-                {props.gender}
-                {props.probability}
-              </div>
-            ) : (
-              <div className="resultBox">
-                <p>Example:</p>
-                <p>Name: {props.name}</p>
-                <p>Gender: {props.gender}</p>
-                <p>Probability: {props.probability}</p>
-              </div>
-            )}
+            <p>Name: {props.name}</p>
+            <p>Gender: {props.gender}</p>
+            <p>Probability: {props.probability}</p>
           </div>
         )}
       </div>
@@ -59,7 +51,7 @@ const mapStateToProps = state => {
   
   return {
     name: state.name,
-    isEnterName: state.isEnterName,
+    isEnteredName: state.isEnteredName,
     isFetching: state.isFetching,
     gender: state.gender,
     probability: state.probability
